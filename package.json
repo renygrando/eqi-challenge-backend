@@ -60,7 +60,23 @@
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
+      "^.+\\.(t|j)s$": [
+        "ts-jest",
+        {
+          "tsconfig": {
+            "allowJs": true
+          }
+        }
+      ]
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@mikro-orm/core|@mikro-orm/nestjs)/)"
+    ],
+    "moduleNameMapper": {
+      "^@mikro-orm/nestjs$": "<rootDir>/test-utils/mikro-orm-nestjs.mock.ts",
+      "^@mikro-orm/core$": "<rootDir>/test-utils/mikro-orm-core.mock.ts",
+      "^@mikro-orm/decorators/legacy$": "<rootDir>/test-utils/mikro-orm-decorators-legacy.mock.ts",
+      "^uuid$": "<rootDir>/test-utils/uuid.mock.ts"
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s"
